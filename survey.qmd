@@ -13,9 +13,11 @@ library(surveydown)
 # Demo survey of choice-based-conjoint questions
 
 ::: {.callout-note}
+
 This is a demo survey showcasing the functionality of <a href="https://surveydown.org" target="_blank">surveydown</a>. It doesn't collect any data.
 
 The GitHub repo of this demo can be accessed <a href="https://github.com/surveydown-dev/demo-choice-based-conjoint" target="_blank">here</a>.
+
 :::
 
 This is a demo of choice-based-conjoint survey. For this survey, we will ask you about your preferences for different types of apples.
@@ -142,6 +144,8 @@ We will show five different types of apples:
 Fuji | Gala | Honeycrisp | Pink Lady | Red Delicious
 -----|------|------------|-----------|--------------
 <img src="images/fuji.jpg" width=100> | <img src="images/gala.jpg" width=100> | <img src="images/honeycrisp.jpg" width=100> | <img src="images/pinkLady.jpg" width=100> | <img src="images/redDelicious.jpg" width=100>
+
+</div>
 
 ```{r}
 sd_next()
@@ -301,7 +305,7 @@ sd_question(
     'Pink Lady'     = 'pink_lady',
     'Red Delicious' = 'red_delicious'
   ),
-  width = 500
+  width = "500px"
 )
 
 label <- 'Please select the type of this apple:
@@ -319,7 +323,7 @@ sd_question(
     'Pink Lady'     = 'pink_lady',
     'Red Delicious' = 'red_delicious'
   ),
-  width = 500
+  width = "500px"
 )
 
 sd_next()
@@ -328,6 +332,7 @@ sd_next()
 :::
 
 ::: {#demographics .sd-page}
+
 # Demographics Page
 
 ## Nice job!
@@ -335,6 +340,7 @@ sd_next()
 We're almost done! We'd just like to ask just a few more questions about you which we will only use for analyzing our survey data.
 
 ::: {style="width:500px; margin: 0 auto;"}
+
 ```{r}
 # Construct the list of years
 
@@ -435,6 +441,7 @@ sd_question(
 
 sd_next()
 ```
+
 :::
 
 :::
