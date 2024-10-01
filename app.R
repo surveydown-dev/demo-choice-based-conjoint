@@ -3,14 +3,7 @@ library(surveydown)
 library(dplyr)
 library(glue)
 
-# Database setup
-
-# surveydown stores data on a database that you define at https://supabase.com/
-# To connect to a database, update the sd_database() function with details
-# from your supabase database. For this demo, we set ignore = TRUE, which will
-# ignore the settings and won't attempt to connect to the database. This is
-# helpful for local testing if you don't want to record testing data in the
-# database table. See the documentation for details:
+# Database setup - see the documentation for details:
 # https://surveydown.org/store-data
 
 db <- sd_database(
@@ -22,24 +15,28 @@ db <- sd_database(
   ignore = TRUE
 )
 
-# Server setup
 server <- function(input, output, session) {
+
+  # Make a 10-digit random number completion code
+  completion_code <- sd_completion_code(10)
+
+  # Store the completion code in the survey data
+  sd_store_value(completion_code)
 
   # Read in the full survey design file
   design <- readr::read_csv("choice_questions.csv")
 
-  # Sample a random respondentID
+  # Sample a random respondentID and store it in your data
   respondentID <- sample(design$respID, 1)
-
-  # Store the respondentID
   sd_store_value(respondentID, "respID")
 
   # Filter for the rows for the chosen respondentID
   df <- design %>%
     filter(respID == respondentID) %>%
+    # Paste on the "images/" path (images are stored in the "images" folder)
     mutate(image = paste0("images/", image))
 
-  # Function to create the question labels based on df values
+  # Function to create the question labels based on design values
   make_cbc_options <- function(df) {
     alt1 <- df |> filter(altID == 1)
     alt2 <- df |> filter(altID == 2)
@@ -78,7 +75,9 @@ server <- function(input, output, session) {
   cbc5_options <- make_cbc_options(df |> filter(qID == 5))
   cbc6_options <- make_cbc_options(df |> filter(qID == 6))
 
-  # Create each choice question
+  # Create each choice question - display these in your survey using sd_output()
+  # Example: sd_output('cbc_q1', type = 'question')
+
   sd_question(
     type   = 'mc_buttons',
     id     = 'cbc_q1',
@@ -136,8 +135,8 @@ server <- function(input, output, session) {
   # Database designation and other settings
   sd_server(
     db = db,
-    use_html = TRUE,
-    all_questions_required = TRUE
+    use_html = TRUE, # Be sure to render the survey.qmd file first
+    all_questions_required = FALSE
   )
 
 }

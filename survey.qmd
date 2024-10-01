@@ -450,13 +450,9 @@ sd_next()
 
 # End Page
 
-```{r}
-completion_code <- sample(10^5:(10^6 - 1), 1)
-```
-
 The survey is finished. Thank you for your feedback!
 
-Your completion code is: **`r completion_code`**.
+Your completion code is: **`r sd_output('completion_code', type = 'value')`**
 
 You may close the window now.
 
