@@ -136,7 +136,7 @@ server <- function(input, output, session) {
   sd_server(
     db = db,
     use_html = TRUE, # Be sure to render the survey.qmd file first
-    all_questions_required = FALSE
+    all_questions_required = TRUE
   )
 
 }
