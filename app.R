@@ -7,12 +7,12 @@ library(glue)
 # https://surveydown.org/store-data
 
 db <- sd_database(
-  host   = "",
-  dbname = "",
-  port   = "",
-  user   = "",
-  table  = "",
-  ignore = TRUE
+  host   = "aws-0-us-east-1.pooler.supabase.com",
+  dbname = "postgres",
+  port   = "6543",
+  user   = "postgres.hwumdvjnymbrgeemvrhq",
+  table  = "dummy_cbc",
+  gssencmode = "disable"
 )
 
 server <- function(input, output, session) {
@@ -135,7 +135,6 @@ server <- function(input, output, session) {
   # Database designation and other settings
   sd_server(
     db = db,
-    use_html = TRUE,
     auto_scroll = TRUE,
     rate_survey = TRUE,
     all_questions_required = TRUE
