@@ -135,7 +135,9 @@ server <- function(input, output, session) {
   # Database designation and other settings
   sd_server(
     db = db,
-    use_html = TRUE, # Be sure to render the survey.qmd file first
+    use_html = TRUE,
+    auto_scroll = TRUE,
+    rate_survey = TRUE,
     all_questions_required = TRUE
   )
 
