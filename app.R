@@ -11,7 +11,7 @@ db <- sd_database(
   dbname = "postgres",
   port   = "6543",
   user   = "postgres.hwumdvjnymbrgeemvrhq",
-  table  = "dummy_cbc",
+  table  = "dummy_cbc_2",
   gssencmode = "disable"
 )
 
@@ -49,19 +49,22 @@ server <- function(input, output, session) {
       **Option 1**<br>
       <img src='{alt1$image}' width=100><br>
       **Type**: {alt1$type}<br>
-      **Price**: $ {alt1$price} / lb
+      **Price**: $ {alt1$price} / lb<br>
+      **Freshness**: {alt1$freshness}
     "),
       glue("
       **Option 2**<br>
       <img src='{alt2$image}' width=100><br>
       **Type**: {alt2$type}<br>
-      **Price**: $ {alt2$price} / lb
+      **Price**: $ {alt2$price} / lb<br>
+      **Freshness**: {alt2$freshness}
     "),
       glue("
       **Option 3**<br>
       <img src='{alt3$image}' width=100><br>
       **Type**: {alt3$type}<br>
-      **Price**: $ {alt3$price} / lb
+      **Price**: $ {alt3$price} / lb<br>
+      **Freshness**: {alt3$freshness}
     ")
     )
     return(options)
